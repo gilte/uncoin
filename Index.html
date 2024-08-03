@@ -21,10 +21,29 @@
         function processNames() {
             const input = document.getElementById('namesInput').value;
             const names = input.split(',').map(name => name.trim());
-            const initials = names.map(name => removeAccents(name.charAt(0)));
+
+            const numberNames = {
+                "um": "1",
+                "dois": "2",
+                "três": "3",
+                "quatro": "4",
+                "cinco": "5",
+                "seis": "6",
+                "sete": "7",
+                "oito": "8",
+                "nove": "9",
+                "dez": "10"
+            };
+
+            const initials = names.map(name => {
+                const cleanedName = removeAccents(name.toLowerCase());
+                return numberNames[cleanedName] || removeAccents(name.charAt(0));
+            });
+
             const result = initials.join('');
             document.getElementById('result').innerText = result;
         }
     </script>
 </body>
 </html>
+
