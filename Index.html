@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Names</title>
+</head>
+<body>
+    <h1>Process Names</h1>
+    <textarea id="namesInput" rows="10" cols="50">Karina, xexéu, Samuel, cachorro, Thaís, sete, Ursula, Samuel, Samuel, hiena, kakapo, seis, iguana, onça, Henrique, whippet, João, Pedro, Diogo, onça, Arthur, cinco, Quitéria, yanabu, Eduardo, urso, Zara, águia, cachorro, gato, Gustavo, onça, baleia, um, Arthur, Quitéria, iguana, Pedro, xexéu, Thiago, águia, kakapo, urso, baleia, kakapo, égua, gato, iguana, whippet, oito, águia, Bruno</textarea>
+    <br><br>
+    <button onclick="processNames()">Process Names</button>
+    <h2>Result:</h2>
+    <p id="result"></p>
+
+    <script>
+        function removeAccents(str) {
+            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+
+        function processNames() {
+            const input = document.getElementById('namesInput').value;
+            const names = input.split(',').map(name => name.trim());
+            const initials = names.map(name => removeAccents(name.charAt(0)));
+            const result = initials.join('');
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+</body>
+</html>
